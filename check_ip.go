@@ -57,11 +57,11 @@ func (conf Config) postIPInfo(c echo.Context) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-	data.DownloadCSV = "../csv/" + id.String() + ".csv"
+	data.DownloadCSV = "csv/" + id.String() + ".csv"
 
 	// Create JSON file stuff
 	jsonfile := "public/json/" + id.String() + ".json"
-	data.DownloadJSON = "../json/" + id.String() + ".json"
+	data.DownloadJSON = "json/" + id.String() + ".json"
 
 	csvw := csv.NewWriter(csvfile)
 	csvl := []string{"ip", "asn", "asnorg", "city", "subdivision", "country", "coutrycode"}
