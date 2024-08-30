@@ -1,6 +1,6 @@
 module github.com/sbroekhoven/getinfo
 
-go 1.21.2
+go 1.23.0
 
 require (
 	github.com/google/uuid v1.6.0
