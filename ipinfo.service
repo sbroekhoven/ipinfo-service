@@ -1,0 +1,14 @@
+[Unit]
+Description=ipinfo
+
+[Service]
+User=sebastian
+Group=sebastian
+Type=simple
+Restart=always
+RestartSec=5s
+WorkingDirectory=/home/sebastian/ipinfo-service
+ExecStart=/home/sebastian/ipinfo-service/ipinfo-service
+
+[Install]
+WantedBy=multi-user.target

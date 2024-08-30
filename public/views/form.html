@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link href="/assets/app.css" rel="stylesheet">
+
+
+  <title>{{.Data.Title}}</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+  {{template "menu.html"}}
+  <!-- Begin page content -->
+  <main class="flex-shrink-0">
+    <div class="container">
+      <h1>{{.Data.Title}}</h1>
+
+<!-- Start FROM -->
+<form method="post">
+  <div class="mb-3">
+    <label for="iplist">IP addresses:</label>
+    <textarea class="form-control" id="iplist" name="iplist" rows="6"></textarea>
+    <div id="iplistHelp" class="form-text">One IP address per row please</div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<!-- End FROM -->
+
+<!-- Start Results -->
+{{if .Data.Results}}
+<hr>
+
+<h2>Results</h2>
+
+<p>Download <a href="{{ .Data.DownloadCSV }}" download>CSV</a> or <a href="{{ .Data.DownloadJSON }}" download>JSON</a> file.</p>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">IP</th>
+        <th scope="col">ASN</th>
+        <th scope="col">ASN Org</th>
+        <th scope="col">City</th>
+        <th scope="col">Sub Division</th>
+        <th scope="col">Country</th>
+      </tr>
+    </thead>
+    {{ with .Data.Results }}
+    {{ range . }}
+    <tr>
+      <td>{{ .IP }}</td>
+      <td>{{ .ASN }}</td>
+      <td>{{ .ASNorg }}</td>
+      <td>{{ .City }}</td>
+      <td>{{ .SubDivision }}</td>
+      <td>{{ .CoutryCode }} ({{ .Country }}) </td>
+    </tr>
+    {{ end }}
+    {{ end }}
+  </table>
+</div>
+{{end}}
+<!--  End Results  -->
+</div>
+</main>
+
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+      <span class="text-muted">This product includes GeoLite2 data created by MaxMind, available from
+        <a href="https://www.maxmind.com">https://www.maxmind.com</a>.</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
